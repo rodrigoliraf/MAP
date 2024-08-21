@@ -1,0 +1,22 @@
+Entidades
+
+Professor
+-Nome(string)
+-ID(string)
+-Disciplinas(lista string)
+-Horário(string)
+
+Aluno
+-Nome(string)
+-ID(string)
+-Disciplinas(lista string)
+-Horário(string)
+
+Disciplina
+-Nome(string)
+-Código(string)
+-Professor(string)
+-Horário(string)
+-Alunos(lista string)
+
+Reestruturar o código de forma que Aluno e professor não estejam relacionados. Aluno deve estar relacionado a Disciplina em uma classe AlunoDisciplina e Professor deve estar relacionado a Disciplina em uma classe ProfessorDisciplina. E essas duas classes devem se relacionar em uma classe maior, que vai ser a ControleAcadêmico. Sendo assim, devem ser criadas mais duas classes, e devem ser removidos os atributos que relacionam aluno a professor e professor a aluno. Deve ter também uma classe Horário relacionada apenas a ControleAcadêmico. O atributo horário não deve mais ser relacionado a Aluno e Professor.
