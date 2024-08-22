@@ -5,14 +5,10 @@ import java.util.List;
 class Professor {
     private String nome;
     private String id;
-    private List<Disciplina> disciplinas;
-    private String horario;
 
-    public Professor(String nome, String id, String horario) {
+    public Professor(String nome, String id) {
         this.nome = nome;
         this.id = id;
-        this.horario = horario;
-        this.disciplinas = new ArrayList<>();
     }
 
     public String getNome() {
@@ -23,15 +19,16 @@ class Professor {
         return id;
     }
 
-    public String getHorario() {
-        return horario;
+    public void setNome(String nome){
+        this.nome = nome;
     }
 
-    public void adicionarDisciplina(Disciplina disciplina) {
-        disciplinas.add(disciplina);
+    public void setId(String id){
+        this.id = id;
     }
 
-    public List<Disciplina> getDisciplinas() {
-        return disciplinas;
+    @Override
+    public String toString() {
+        return "Nome: " + nome + ", Id: " + id;
     }
 }

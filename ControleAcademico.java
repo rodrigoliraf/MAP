@@ -1,44 +1,91 @@
-public class ControleAcademico {
-    public static void main(String[] args) {
-        Professor professor1 = new Professor("Joao", "P001", "Segundas e Quartas 10:00 - 12:00");
-        Professor professor2 = new Professor("Maria", "P002", "Terças e Quintas 14:00 - 16:00");
+import java.util.List;
+import java.util.ArrayList;
 
-        Disciplina disciplina1 = new Disciplina("Estrutura de Dados", "CS101", professor1, "Segundas 10:00 - 12:00");
-        Disciplina disciplina2 = new Disciplina("Algoritmos", "CS102", professor2, "Tercas 14:00 - 16:00");
+public class ControleAcademico 
+{
 
-        professor1.adicionarDisciplina(disciplina1);
-        professor2.adicionarDisciplina(disciplina2);
+    private List<AlunoDisciplina> alunoDisciplinas = new ArrayList<>();
+    private List<ProfDisciplina> profDisciplinas = new ArrayList<>();
+    private List<Horario> horarios = new ArrayList<>();
 
-        Aluno aluno1 = new Aluno("Carlos", "A001", "Segundas 10:00 - 12:00 e Tercas 14:00 - 16:00");
-        Aluno aluno2 = new Aluno("Ana", "A002", "Segundas 10:00 - 12:00");
+    // Método para adicionar uma relação aluno-disciplina
+    public boolean adicionarAlunoDisciplina(Aluno aluno, Disciplina disciplina) {
+        AlunoDisciplina alunoDisciplina = new AlunoDisciplina(aluno, disciplina);
+        return alunoDisciplinas.add(alunoDisciplina);
+    }
 
-        disciplina1.adicionarAluno(aluno1);
-        disciplina1.adicionarAluno(aluno2);
-        disciplina2.adicionarAluno(aluno1);
+    // Método para adicionar uma relação professor-disciplina
+    public boolean adicionarProfDisciplina(Professor professor, Disciplina disciplina) {
+        ProfDisciplina profDisciplina = new ProfDisciplina(professor, disciplina);
+        return profDisciplinas.add(profDisciplina);
+    }
 
-        aluno1.adicionarDisciplina(disciplina1);
-        aluno1.adicionarDisciplina(disciplina2);
-        aluno2.adicionarDisciplina(disciplina1);
+    // Método para adicionar um horário
+    public boolean adicionarHorario(String dia, String horaInicio, String horaFim) {
+        Horario horario = new Horario(dia, horaInicio, horaFim);
+        return horarios.add(horario);
+    }
 
-        System.out.println("Disciplinas ministradas por " + professor1.getNome() + ":");
-        for (Disciplina d : professor1.getDisciplinas()) {
-            System.out.println("-" + d.getNome());
-        }
+    // Método para obter todas as relações aluno-disciplina
+    public List<AlunoDisciplina> getAlunoDisciplinas() {
+        return new ArrayList<>(alunoDisciplinas);
+    }
 
-        System.out.println("\nHorario do " + professor1.getNome() + ": " + professor1.getHorario());
+    // Método para obter todas as relações professor-disciplina
+    public List<ProfDisciplina> getProfDisciplinas() {
+        return new ArrayList<>(profDisciplinas);
+    }
 
-        System.out.println("\nAlunos matriculados em " + disciplina1.getNome() + ":");
-        for (Aluno a : disciplina1.getAlunos()) {
-            System.out.println("-" + a.getNome());
-        }
+    // Método para obter todos os horários
+    public List<Horario> getHorarios() {
+        return new ArrayList<>(horarios);
+    }
 
-        System.out.println("\nDisciplinas de " + aluno1.getNome() + ":");
-        for (Disciplina d : aluno1.getDisciplinas()) {
-            System.out.println("-" + d.getNome());
-        }
-
-        System.out.println("\nHorario do " + aluno1.getNome() + ": " + aluno1.getHorario());
-
-        System.out.println("\nNumero de alunos em " + disciplina1.getNome() + ": " + disciplina1.getNumeroAlunos());
+    public static void main(String[] args) 
+    {
+            // Instanciando o sistema de controle acadêmico
+            ControleAcademico ControleAcademico = new ControleAcademico();
+    
+            // Criando alunos
+            Aluno aluno1 = new Aluno("Joao Silva", "202301");
+            Aluno aluno2 = new Aluno("Maria Souza", "202302");
+    
+            // Criando disciplinas
+            Disciplina disciplina1 = new Disciplina("Matematica", "MAT101");
+            Disciplina disciplina2 = new Disciplina("Programacao", "PROG101");
+    
+            // Criando professores
+            Professor professor1 = new Professor("Dr. Pedro", "Matematica");
+            Professor professor2 = new Professor("Prof. Ana", "Computacao");
+    
+            // Adicionando relações aluno-disciplina
+            ControleAcademico.adicionarAlunoDisciplina(aluno1, disciplina1);
+            ControleAcademico.adicionarAlunoDisciplina(aluno2, disciplina2);
+    
+            // Adicionando relações professor-disciplina
+            ControleAcademico.adicionarProfDisciplina(professor1, disciplina1);
+            ControleAcademico.adicionarProfDisciplina(professor2, disciplina2);
+    
+            // Adicionando horários
+            ControleAcademico.adicionarHorario("Segunda-feira", "08:00", "10:00");
+            ControleAcademico.adicionarHorario("Terca-feira", "10:00", "12:00");
+    
+            // Exibindo as relações aluno-disciplina
+            System.out.println("Relacoes Aluno-Disciplina:");
+            for (AlunoDisciplina alunoDisciplina : ControleAcademico.getAlunoDisciplinas()) {
+                System.out.println(alunoDisciplina);
+            }
+    
+            // Exibindo as relações professor-disciplina
+            System.out.println("\nRelacoes Professor-Disciplina:");
+            for (ProfDisciplina profDisciplina : ControleAcademico.getProfDisciplinas()) {
+                System.out.println(profDisciplina);
+            }
+    
+            // Exibindo os horários
+            System.out.println("\nHorarios:");
+            for (Horario horario : ControleAcademico.getHorarios()) {
+                System.out.println(horario);
+            }
     }
 }
